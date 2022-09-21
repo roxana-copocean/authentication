@@ -7,6 +7,9 @@ import AuthContext from '../../context/auth-context';
 const MainNavigation = () => {
 	const context = useContext(AuthContext);
 	const isLoggedIn = context.isLoggedIn;
+	const logOutHandler = () => {
+		context.logout();
+	};
 	return (
 		<header className={classes.header}>
 			<Link to="/">
@@ -26,7 +29,7 @@ const MainNavigation = () => {
 					)}
 					{isLoggedIn && (
 						<li>
-							<button>Logout</button>
+							<button onClick={logOutHandler}>Logout</button>
 						</li>
 					)}
 				</ul>
