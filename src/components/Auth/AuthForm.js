@@ -52,7 +52,9 @@ const AuthForm = () => {
 				}
 			})
 			.then((data) => {
-				context.login(data.idToken);
+				// making the token expire after 1 hour
+				const expirationTime = new Date(new Date().getTime() + +data.expiresIn * 1000);
+				context.login(data.idToken, expirationTime.toISOString());
 				history.replace('/');
 			})
 			.catch((err) => {
